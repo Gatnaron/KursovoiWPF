@@ -1,0 +1,46 @@
+﻿<Window x:Class="KursovoiWPF.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KursovoiWPF"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="454" Width="315">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Авторизация">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="97*"/>
+                        <ColumnDefinition Width="197*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="logLoginBox" HorizontalAlignment="Left" Margin="12,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="35" FontSize="18" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <Label Content="Логин" HorizontalAlignment="Left" Margin="12,55,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Verdana" Grid.Column="1"/>
+                    <TextBox x:Name="logPasswordBox" HorizontalAlignment="Left" Margin="12,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="35" FontSize="18" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <Label Content="Пароль" HorizontalAlignment="Left" Margin="12,145,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Verdana" Grid.Column="1"/>
+                    <CheckBox x:Name="showPassword" Content="Показать пароль" HorizontalAlignment="Left" Margin="12,239,0,0" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <CheckBox x:Name="rememberMe" Content="Запомнить меня?" HorizontalAlignment="Left" Margin="12,264,0,0" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <Button x:Name="loginButton" Content="Вход" HorizontalAlignment="Left" Margin="12,323,0,0" VerticalAlignment="Top" Height="50" Width="255" FontSize="20" Click="loginButton_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Регистрация">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="64*"/>
+                        <ColumnDefinition Width="245*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="regEmailBox" HorizontalAlignment="Left" Margin="10,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" Height="29" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label Content="Электронная почта" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Verdana" Height="27" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="regLoginBox" HorizontalAlignment="Left" Margin="10,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" Height="29" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label Content="Логин" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Verdana" Height="27"/>
+                    <TextBox x:Name="regPasswordBox1" HorizontalAlignment="Left" Margin="10,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" Height="29" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14" FontFamily="Verdana" Height="27" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="regPasswordBox2" HorizontalAlignment="Left" Margin="10,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" Height="29" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label Content="Повторите пароль" HorizontalAlignment="Left" Margin="10,240,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Verdana" Height="27" Grid.ColumnSpan="2"/>
+                    <Button x:Name="registerButton" Content="Регистрация" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" Height="40" Width="289" Click="registerButton_Click" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

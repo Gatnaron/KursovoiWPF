@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище SmartStoreModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BasketItem">
+          <Key>
+            <PropertyRef Name="ID_BI" />
+          </Key>
+          <Property Name="ID_BI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Profiles" Type="int" Nullable="false" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HomeAssistant">
+          <Key>
+            <PropertyRef Name="ID_HA" />
+          </Key>
+          <Property Name="ID_HA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Volume" Type="int" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lamps">
+          <Key>
+            <PropertyRef Name="ID_L" />
+          </Key>
+          <Property Name="ID_L" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Voltage" Type="int" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lock">
+          <Key>
+            <PropertyRef Name="ID_Lock" />
+          </Key>
+          <Property Name="ID_Lock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumbKey" Type="int" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="ID_OI" />
+          </Key>
+          <Property Name="ID_OI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Orders" Type="int" Nullable="false" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Orders" />
+          </Key>
+          <Property Name="ID_Orders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Profile" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Adress" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID_P" />
+          </Key>
+          <Property Name="ID_P" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Brand" Type="varchar" MaxLength="50" />
+          <Property Name="ComProtocol" Type="varchar" MaxLength="100" />
+          <Property Name="code" Type="varchar" MaxLength="21" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="ID_Profiles" />
+          </Key>
+          <Property Name="ID_Profiles" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Socket">
+          <Key>
+            <PropertyRef Name="ID_S" />
+          </Key>
+          <Property Name="ID_S" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Termostat">
+          <Key>
+            <PropertyRef Name="ID_T" />
+          </Key>
+          <Property Name="ID_T" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MinTemp" Type="int" />
+          <Property Name="MaxTemp" Type="int" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BasketItem_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="BasketItem" Type="Self.BasketItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="BasketItem">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasketItem_Profiles">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="BasketItem" Type="Self.BasketItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ID_Profiles" />
+            </Principal>
+            <Dependent Role="BasketItem">
+              <PropertyRef Name="ID_Profiles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeAssistant_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="HomeAssistant" Type="Self.HomeAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="HomeAssistant">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lamps_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Lamps" Type="Self.Lamps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Lamps">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lock_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Lock" Type="Self.Lock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Lock">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID_Orders" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ID_Orders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Profiles">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ID_Profiles" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Profile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Socket_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Socket" Type="Self.Socket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Socket">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Termostat_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Termostat" Type="Self.Termostat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Termostat">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SmartStoreModelContainer">
+          <EntitySet Name="BasketItem" EntityType="Self.BasketItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeAssistant" EntityType="Self.HomeAssistant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lamps" EntityType="Self.Lamps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lock" EntityType="Self.Lock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Socket" EntityType="Self.Socket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Termostat" EntityType="Self.Termostat" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BasketItem_Product" Association="Self.FK_BasketItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="BasketItem" EntitySet="BasketItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasketItem_Profiles" Association="Self.FK_BasketItem_Profiles">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="BasketItem" EntitySet="BasketItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeAssistant_Product" Association="Self.FK_HomeAssistant_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="HomeAssistant" EntitySet="HomeAssistant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lamps_Product" Association="Self.FK_Lamps_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Lamps" EntitySet="Lamps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lock_Product" Association="Self.FK_Lock_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Lock" EntitySet="Lock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_Orders" Association="Self.FK_OrderItem_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_Product" Association="Self.FK_OrderItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Profiles" Association="Self.FK_Orders_Profiles">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Socket_Product" Association="Self.FK_Socket_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Socket" EntitySet="Socket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Termostat_Product" Association="Self.FK_Termostat_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Termostat" EntitySet="Termostat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BasketItem">
+          <Key>
+            <PropertyRef Name="ID_BI" />
+          </Key>
+          <Property Name="ID_BI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Profiles" Type="Int32" Nullable="false" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_BasketItem_Product" FromRole="BasketItem" ToRole="Product" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_BasketItem_Profiles" FromRole="BasketItem" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="HomeAssistant">
+          <Key>
+            <PropertyRef Name="ID_HA" />
+          </Key>
+          <Property Name="ID_HA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volume" Type="Int32" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_HomeAssistant_Product" FromRole="HomeAssistant" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Lamps">
+          <Key>
+            <PropertyRef Name="ID_L" />
+          </Key>
+          <Property Name="ID_L" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Voltage" Type="Int32" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Lamps_Product" FromRole="Lamps" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Lock">
+          <Key>
+            <PropertyRef Name="ID_Lock" />
+          </Key>
+          <Property Name="ID_Lock" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumbKey" Type="Int32" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Lock_Product" FromRole="Lock" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="ID_OI" />
+          </Key>
+          <Property Name="ID_OI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Orders" Type="Int32" Nullable="false" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderItem_Orders" FromRole="OrderItem" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderItem_Product" FromRole="OrderItem" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Orders" />
+          </Key>
+          <Property Name="ID_Orders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Profile" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_Orders" FromRole="Orders" ToRole="OrderItem" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_Orders_Profiles" FromRole="Orders" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID_P" />
+          </Key>
+          <Property Name="ID_P" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ComProtocol" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="21" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BasketItem" Relationship="Self.FK_BasketItem_Product" FromRole="Product" ToRole="BasketItem" />
+          <NavigationProperty Name="HomeAssistant" Relationship="Self.FK_HomeAssistant_Product" FromRole="Product" ToRole="HomeAssistant" />
+          <NavigationProperty Name="Lamps" Relationship="Self.FK_Lamps_Product" FromRole="Product" ToRole="Lamps" />
+          <NavigationProperty Name="Lock" Relationship="Self.FK_Lock_Product" FromRole="Product" ToRole="Lock" />
+          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_Product" FromRole="Product" ToRole="OrderItem" />
+          <NavigationProperty Name="Socket" Relationship="Self.FK_Socket_Product" FromRole="Product" ToRole="Socket" />
+          <NavigationProperty Name="Termostat" Relationship="Self.FK_Termostat_Product" FromRole="Product" ToRole="Termostat" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="ID_Profiles" />
+          </Key>
+          <Property Name="ID_Profiles" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BasketItem" Relationship="Self.FK_BasketItem_Profiles" FromRole="Profiles" ToRole="BasketItem" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Profiles" FromRole="Profiles" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Socket">
+          <Key>
+            <PropertyRef Name="ID_S" />
+          </Key>
+          <Property Name="ID_S" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Socket_Product" FromRole="Socket" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Termostat">
+          <Key>
+            <PropertyRef Name="ID_T" />
+          </Key>
+          <Property Name="ID_T" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MinTemp" Type="Int32" />
+          <Property Name="MaxTemp" Type="Int32" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Termostat_Product" FromRole="Termostat" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_BasketItem_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="BasketItem" Type="Self.BasketItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="BasketItem">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasketItem_Profiles">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="BasketItem" Type="Self.BasketItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ID_Profiles" />
+            </Principal>
+            <Dependent Role="BasketItem">
+              <PropertyRef Name="ID_Profiles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeAssistant_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="HomeAssistant" Type="Self.HomeAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="HomeAssistant">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lamps_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Lamps" Type="Self.Lamps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Lamps">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lock_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Lock" Type="Self.Lock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Lock">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID_Orders" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ID_Orders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Profiles">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ID_Profiles" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Profile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Socket_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Socket" Type="Self.Socket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Socket">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Termostat_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Termostat" Type="Self.Termostat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Termostat">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartStoreEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BasketItem" EntityType="Self.BasketItem" />
+          <EntitySet Name="HomeAssistant" EntityType="Self.HomeAssistant" />
+          <EntitySet Name="Lamps" EntityType="Self.Lamps" />
+          <EntitySet Name="Lock" EntityType="Self.Lock" />
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" />
+          <EntitySet Name="Socket" EntityType="Self.Socket" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Termostat" EntityType="Self.Termostat" />
+          <AssociationSet Name="FK_BasketItem_Product" Association="Self.FK_BasketItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="BasketItem" EntitySet="BasketItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasketItem_Profiles" Association="Self.FK_BasketItem_Profiles">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="BasketItem" EntitySet="BasketItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeAssistant_Product" Association="Self.FK_HomeAssistant_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="HomeAssistant" EntitySet="HomeAssistant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lamps_Product" Association="Self.FK_Lamps_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Lamps" EntitySet="Lamps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lock_Product" Association="Self.FK_Lock_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Lock" EntitySet="Lock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_Orders" Association="Self.FK_OrderItem_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_Product" Association="Self.FK_OrderItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Profiles" Association="Self.FK_Orders_Profiles">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Socket_Product" Association="Self.FK_Socket_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Socket" EntitySet="Socket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Termostat_Product" Association="Self.FK_Termostat_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Termostat" EntitySet="Termostat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SmartStoreModelContainer" CdmEntityContainer="SmartStoreEntities1">
+          <EntitySetMapping Name="BasketItem">
+            <EntityTypeMapping TypeName="SmartStoreModel.BasketItem">
+              <MappingFragment StoreEntitySet="BasketItem">
+                <ScalarProperty Name="ID_BI" ColumnName="ID_BI" />
+                <ScalarProperty Name="ID_Profiles" ColumnName="ID_Profiles" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeAssistant">
+            <EntityTypeMapping TypeName="SmartStoreModel.HomeAssistant">
+              <MappingFragment StoreEntitySet="HomeAssistant">
+                <ScalarProperty Name="ID_HA" ColumnName="ID_HA" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lamps">
+            <EntityTypeMapping TypeName="SmartStoreModel.Lamps">
+              <MappingFragment StoreEntitySet="Lamps">
+                <ScalarProperty Name="ID_L" ColumnName="ID_L" />
+                <ScalarProperty Name="Voltage" ColumnName="Voltage" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lock">
+            <EntityTypeMapping TypeName="SmartStoreModel.Lock">
+              <MappingFragment StoreEntitySet="Lock">
+                <ScalarProperty Name="ID_Lock" ColumnName="ID_Lock" />
+                <ScalarProperty Name="NumbKey" ColumnName="NumbKey" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItem">
+            <EntityTypeMapping TypeName="SmartStoreModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="ID_OI" ColumnName="ID_OI" />
+                <ScalarProperty Name="ID_Orders" ColumnName="ID_Orders" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SmartStoreModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID_Orders" ColumnName="ID_Orders" />
+                <ScalarProperty Name="ID_Profile" ColumnName="ID_Profile" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="SmartStoreModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="ComProtocol" ColumnName="ComProtocol" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="SmartStoreModel.Profiles">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="ID_Profiles" ColumnName="ID_Profiles" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Socket">
+            <EntityTypeMapping TypeName="SmartStoreModel.Socket">
+              <MappingFragment StoreEntitySet="Socket">
+                <ScalarProperty Name="ID_S" ColumnName="ID_S" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SmartStoreModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Termostat">
+            <EntityTypeMapping TypeName="SmartStoreModel.Termostat">
+              <MappingFragment StoreEntitySet="Termostat">
+                <ScalarProperty Name="ID_T" ColumnName="ID_T" />
+                <ScalarProperty Name="MinTemp" ColumnName="MinTemp" />
+                <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

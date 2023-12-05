@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bc1808bab6894e398b2edfb426907b84" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartStoreModel.BasketItem" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.HomeAssistant" Width="1.5" PointX="0.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.Lamps" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.Lock" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.OrderItem" Width="1.5" PointX="4.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.Orders" Width="1.5" PointX="3.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.Product" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.Profiles" Width="1.5" PointX="7.375" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.Socket" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartStoreModel.Termostat" Width="1.5" PointX="3" PointY="20.375" IsExpanded="true" />
+        <AssociationConnector Association="SmartStoreModel.FK_BasketItem_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_BasketItem_Profiles" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_HomeAssistant_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_Lamps_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_Lock_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_OrderItem_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_OrderItem_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_Orders_Profiles" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_Socket_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartStoreModel.FK_Termostat_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

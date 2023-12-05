@@ -1,0 +1,148 @@
+﻿<Page x:Class="KursovoiWPF.PageHistoryUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KursovoiWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="850"
+      Title="PageHistory"
+      Loaded="Page_Loaded">
+    <Page.Resources>
+
+        <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Padding" Value="-2"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="blue"/>
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="ToolTip"
+Value="{Binding RelativeSource={RelativeSource Self},
+Path=(Validation.Errors)[0].ErrorContent}"/>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="Действие">
+                <MenuItem Header="Отменить" Command="Undo"/>
+                <Separator/>
+                <MenuItem Header="Найти" Command="Find"/>
+                <Separator/>
+                <MenuItem Header="Удалить" Command="Delete"/>
+            </MenuItem>
+            <MenuItem Header="Отчёт"/>
+        </Menu>
+        <ToolBar Name="ToolBar1" Margin="3" Height="81">
+            <Button Name="Undo" Command="Undo" ToolTip="Отменить редактирование/создание"
+                    Margin="5,2,5,2" Height="50" Width="50">
+                <Image Source="images/Undo.png" Height="40" Width="40"></Image>
+            </Button>
+            <Button Name="Find" ToolTip="Найти" Command="Find"
+                    Margin="5,2,5,2" Height="50" Width="50">
+                <Image Source="images/Find.png" Height="40" Width="40"></Image>
+            </Button>
+
+
+            <StackPanel Grid.Column="1" Width="182" Height="69" Margin="220,0,0,0">
+                <DatePicker x:Name="DatePicker1" Text="Дата заказа" Width="180" Height="25" HorizontalAlignment="Right" Margin="0,0,0,5" DisplayDate="2023-05-12"/>
+                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="Адрес" Width="180" Height="19" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </ToolBar>
+        <Grid Height="341">
+            <DataGrid
+        x:Name="DataGridOrderItem"
+            HorizontalAlignment="Left"
+        ItemsSource="{Binding}"
+        AutoGenerateColumns="False"
+        MaxWidth="1000" MaxHeight="295"
+RowBackground="White"
+AlternatingRowBackground="Gray"
+        BorderBrush="Blue"
+BorderThickness="3"
+        RowHeight="25"
+
+        Cursor="Hand" Width="420" Margin="430,0,0,0">
+
+                <DataGrid.RowValidationErrorTemplate>
+                    <ControlTemplate>
+                        <Grid Margin="0,-2,0,-2"
+ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}, Mode=FindAncestor}}">
+                            <Ellipse StrokeThickness="0" Fill="Red" 
+  Width="{TemplateBinding FontSize}" 
+  Height="{TemplateBinding FontSize}" />
+                            <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
+  FontWeight="Bold" Foreground="White" 
+  HorizontalAlignment="Center"  />
+                        </Grid>
+                    </ControlTemplate>
+                </DataGrid.RowValidationErrorTemplate>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Артикул"
+Binding="{Binding Product.code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Название"
+Binding="{Binding Product.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Цена"
+Binding="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid
+                x:Name="DataGridOrders"
+                HorizontalAlignment="Left"
+                ItemsSource="{Binding}"
+                AutoGenerateColumns="False"
+                MaxWidth="1000" MaxHeight="295"
+                RowBackground="White"
+                AlternatingRowBackground="Gray"
+                BorderBrush="Blue"
+                BorderThickness="3"
+                RowHeight="25"
+
+                Cursor="Hand" Width="425" SelectionChanged="DataGridOrders_SelectionChanged">
+
+                <DataGrid.RowValidationErrorTemplate>
+                    <ControlTemplate>
+                        <Grid Margin="0,-2,0,-2"
+                            ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}, Mode=FindAncestor}}">
+                            <Ellipse StrokeThickness="0" Fill="Red" 
+                                Width="{TemplateBinding FontSize}" 
+                                Height="{TemplateBinding FontSize}" />
+                            <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
+                                FontWeight="Bold" Foreground="White" 
+                                HorizontalAlignment="Center"  />
+                        </Grid>
+                    </ControlTemplate>
+                </DataGrid.RowValidationErrorTemplate>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№ Заказа"
+                        Binding="{Binding ID_Orders, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Дата заказа"
+                        Binding="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Адрес доставки"
+                        Binding="{Binding Adress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+
+    </StackPanel>
+
+    <Page.CommandBindings>
+        <CommandBinding Command="Undo"
+                        Executed="UndoCommandBinding_Executed"
+                        CanExecute="UndoCommandBinding_CanExecute" />
+
+        <CommandBinding Command="Find"
+                        Executed="FindCommandBinding_Executed"
+                        CanExecute="FindCommandBinding_CanExecute" />
+    </Page.CommandBindings>
+</Page>
