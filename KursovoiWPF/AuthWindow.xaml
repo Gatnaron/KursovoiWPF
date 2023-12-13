@@ -23,7 +23,8 @@
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="logLoginBox" HorizontalAlignment="Left" Margin="159,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254" Height="35" FontSize="18"/>
                         <Label Content="Логин" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Verdana"/>
-                        <TextBox x:Name="logPasswordBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="254" Height="36" FontSize="18" Margin="159,182,0,0"/>
+                        <PasswordBox x:Name="logPasswordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="254" Height="36" FontSize="18" Margin="159,182,0,0" InputScope="Default"/>
+
                         <Label Content="Пароль" HorizontalAlignment="Left" Margin="43,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Verdana"/>
                         <Button x:Name="loginButton" Content="Вход" Margin="101,281,101,75" Height="50" FontSize="20" Click="loginButton_Click" Background="#FF2196F3" Foreground="White" FontWeight="Bold" />
                     </Grid>

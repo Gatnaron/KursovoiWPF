@@ -57,7 +57,7 @@ namespace KursovoiWPF
         private void loginButton_Click(Object sender, RoutedEventArgs e)
         {
             AuthLog auth = new AuthLog();
-            int id = auth.Login(logLoginBox.Text.Trim(), logPasswordBox.Text.Trim());
+            int id = auth.Login(logLoginBox.Text.Trim(), logPasswordBox.Password.Trim());
             if (id != -1) 
             {
                 MessageBox.Show("Добро пожаловать " + logLoginBox.Text.Trim());

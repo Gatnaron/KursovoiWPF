@@ -36,7 +36,7 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             <MenuItem Header="Отчёт"/>
         </Menu>
         <ToolBar Name="ToolBar1" Margin="3" Height="91">
-            <Button Name="Undo" Command="Undo" ToolTip="Отменить редактирование/создание"
+            <Button Name="Undo" Command="Undo" ToolTip="Вернуться в карзину"
                     Margin="5,2,5,2">
                 <Image Source="images/Undo.png"/>
             </Button>

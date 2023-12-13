@@ -149,6 +149,7 @@ namespace KursovoiWPF
             }
             DataEntities.SaveChanges();
             GetProduct();
+            MessageBox.Show("Оплата завершена!");
         }
         private int SumPrice()
         {
