@@ -33,7 +33,7 @@ namespace KursovoiWPF
         {
             if (id == 4)
             {
-                var page = new PageMain(this);
+                var page = new PageMenuAdmin(this);
                 this.Content = page;
             }
             else

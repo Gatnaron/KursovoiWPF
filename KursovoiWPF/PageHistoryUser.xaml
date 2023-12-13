@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:KursovoiWPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="850"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="PageHistory"
       Loaded="Page_Loaded">
     <Page.Resources>
@@ -35,20 +35,20 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             </MenuItem>
             <MenuItem Header="Отчёт"/>
         </Menu>
-        <ToolBar Name="ToolBar1" Margin="3" Height="81">
+        <ToolBar Name="ToolBar1" Margin="3" Height="91">
             <Button Name="Undo" Command="Undo" ToolTip="Отменить редактирование/создание"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Undo.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2">
+                <Image Source="images/Undo.png"/>
             </Button>
             <Button Name="Find" ToolTip="Найти" Command="Find"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Find.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2">
+                <Image Source="images/Find.png"/>
             </Button>
 
 
             <StackPanel Grid.Column="1" Width="182" Height="69" Margin="220,0,0,0">
-                <DatePicker x:Name="DatePicker1" Text="Дата заказа" Width="180" Height="25" HorizontalAlignment="Right" Margin="0,0,0,5" DisplayDate="2023-05-12"/>
-                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="Адрес" Width="180" Height="19" HorizontalAlignment="Right"/>
+                <DatePicker x:Name="DatePicker1" Text="Дата заказа" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5" DisplayDate="2023-05-12"/>
+                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="Адрес" Width="180" Height="auto" HorizontalAlignment="Right"/>
             </StackPanel>
         </ToolBar>
         <Grid Height="341">
@@ -57,14 +57,13 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             HorizontalAlignment="Left"
         ItemsSource="{Binding}"
         AutoGenerateColumns="False"
-        MaxWidth="1000" MaxHeight="295"
 RowBackground="White"
 AlternatingRowBackground="Gray"
-        BorderBrush="Blue"
+        BorderBrush="#2196f3"
 BorderThickness="3"
-        RowHeight="25"
+                IsReadOnly="True"
 
-        Cursor="Hand" Width="420" Margin="430,0,0,0">
+        Cursor="Hand" Width="485" Margin="505,0,0,0">
 
                 <DataGrid.RowValidationErrorTemplate>
                     <ControlTemplate>
@@ -96,14 +95,12 @@ Binding="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 HorizontalAlignment="Left"
                 ItemsSource="{Binding}"
                 AutoGenerateColumns="False"
-                MaxWidth="1000" MaxHeight="295"
                 RowBackground="White"
                 AlternatingRowBackground="Gray"
-                BorderBrush="Blue"
+                BorderBrush="#2196f3"
                 BorderThickness="3"
-                RowHeight="25"
-
-                Cursor="Hand" Width="425" SelectionChanged="DataGridOrders_SelectionChanged">
+                IsReadOnly="True"
+                Cursor="Hand" Width="500" SelectionChanged="DataGridOrders_SelectionChanged">
 
                 <DataGrid.RowValidationErrorTemplate>
                     <ControlTemplate>

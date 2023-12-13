@@ -25,15 +25,16 @@ namespace KursovoiWPF
         public static SmartStoreEntities1 DataEntities { get; set; } = new SmartStoreEntities1();
         public ObservableCollection<OrderItem> ListOrderItem { get; set; }
         public ObservableCollection<Orders> ListOrders { get; set; }
-        public PageHistory()
+        public PageHistory(MainWindow mainWindow)
         {
             InitializeComponent();
             DataEntities = new SmartStoreEntities1();
             ListOrderItem = new ObservableCollection<OrderItem>();
             ListOrders = new ObservableCollection<Orders>();
             DatePicker1.SelectedDate = DateTime.Now;
+            mw = mainWindow;
         }
-
+        public MainWindow mw;
         public bool isDirty = true;
         public static bool canSave = true;
         public void GetOrderItem(int ID_Orders)
@@ -79,8 +80,6 @@ namespace KursovoiWPF
             MessageBox.Show("Поиск по фильтру(ам)");
             FindByName((DateTime)this.DatePicker1.SelectedDate , this.TextBox1.Text);
             isDirty = true;
-
-
         }
         
         private void FindByName(DateTime date, string adress)
@@ -127,6 +126,17 @@ namespace KursovoiWPF
             {
                 GetOrderItem(((Orders)DataGridOrders.SelectedItem).ID_Orders);
             }
+        }
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Page Menu = new PageMenuAdmin(mw);
+            mw.Content = Menu;
+        }
+
+        private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

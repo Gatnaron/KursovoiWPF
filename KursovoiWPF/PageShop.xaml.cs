@@ -147,5 +147,6 @@ namespace KursovoiWPF
             Page Basket = new PageBasket(ID_Prof, this);
             mw.Content = Basket;
         }
+
     }
 }

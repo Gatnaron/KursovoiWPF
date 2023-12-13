@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace KursovoiWPF
 {
@@ -24,6 +25,11 @@ namespace KursovoiWPF
         public AuthWindow()
         {
             InitializeComponent();
+            DoubleAnimation btnAnimation = new DoubleAnimation();
+            btnAnimation.From = 0;
+            btnAnimation.To = 230;
+            btnAnimation.Duration = TimeSpan.FromSeconds(3);
+            loginButton.BeginAnimation(Button.WidthProperty, btnAnimation);
         }
 
         private void registerButton_Click(object sender, RoutedEventArgs e)
@@ -54,13 +60,31 @@ namespace KursovoiWPF
             int id = auth.Login(logLoginBox.Text.Trim(), logPasswordBox.Text.Trim());
             if (id != -1) 
             {
-                MessageBox.Show("Авторизован пользователь - id: " + id.ToString());
+                MessageBox.Show("Добро пожаловать " + logLoginBox.Text.Trim());
                 MainWindow mw = new MainWindow(id);
                 this.Hide();
                 mw.ShowDialog();
                 this.Show();
             }
             else MessageBox.Show("Неверный логин или пароль!");
+        }
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button button = (Button)sender;
+            DoubleAnimation btnAnim = new DoubleAnimation();
+            btnAnim.From = 142;
+            btnAnim.To = 225;
+            btnAnim.Duration = TimeSpan.FromSeconds(0.1);
+            button.BeginAnimation(Button.WidthProperty, btnAnim);
+        }
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button button = (Button)sender;
+            DoubleAnimation btnAnim = new DoubleAnimation();
+            btnAnim.From = button.Width;
+            btnAnim.To = 142;
+            btnAnim.Duration = TimeSpan.FromSeconds(0.1);
+            button.BeginAnimation(Button.WidthProperty, btnAnim);
         }
     }
 }

@@ -185,16 +185,14 @@ namespace KursovoiWPF
             DataGridProd.SelectedIndex = 0;
         }
 
-        private void Users_Click(object sender, RoutedEventArgs e)
+        
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            Page Users = new PageUsers();
-            mw.Content = Users;
+            Page Menu = new PageMenuAdmin(mw);
+            mw.Content = Menu;
         }
 
-        private void History_Click(object sender, RoutedEventArgs e)
-        {
-            Page History = new PageHistory();
-            mw.Content = History;
-        }
+        
     }
 }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:KursovoiWPF"
       xmlns:rule="clr-namespace:KursovoiWPF.ValidationRules"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="850"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="PageMain"
       Loaded="Page_Loaded">
     <Page.Resources>
@@ -39,110 +39,107 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             </MenuItem>
             <MenuItem Header="Отчёт"/>
         </Menu>
-        <ToolBar Name="ToolBar1" Margin="3" Height="81">
-            <Button Name="Undo" Command="Undo" ToolTip="Отменить редактирование/создание"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Undo.png" Height="40" Width="40"></Image>
+        <ToolBar Name="ToolBar1" Margin="3" Height="88">
+            <Button Name="Undo" Command="Undo" ToolTip="Отменить редактирование/создание" Height="66" Width="66">
+                <Image Source="images/Undo.png"/>
             </Button>
             <Button Name="Add" ToolTip="Добавить/Создать" Command="New"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Add.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2" Width="66" Height="66">
+                <Image Source="images/Add.png"/>
             </Button>
             <Button Name="Find" ToolTip="Найти" Command="Find"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Find.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2" Width="66">
+                <Image Source="images/Find.png"/>
             </Button>
             <Button Name="Edit" ToolTip="Редактировать" Command="Cut"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Edit.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2" Width="66">
+                <Image Source="images/Edit.png"/>
             </Button>
             <Button Name="Save" ToolTip="Сохранить" Command="Save"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Save.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2" Width="66">
+                <Image Source="images/Save.png"/>
             </Button>
             <Button Name="Delete" ToolTip="Удалить" Command="Delete"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Delete.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2" Width="66">
+                <Image Source="images/Delete.png"/>
                 <Button.CommandBindings>
                     <CommandBinding Command="Delete"
                         Executed="DeleteCommandBinding_Executed"
                         CanExecute="DeleteCommandBinding_CanExecute" />
                 </Button.CommandBindings>
             </Button>
-            <Button Name="Users" ToolTip="Пользователи" Margin="5,2,5,2" Height="50" Width="50" Click="Users_Click">
-                <Image Source="images/Users.png" Height="40" Width="40"></Image>
+            
+            <Button x:Name="Menu" ToolTip="Меню" Click="Menu_Click" Width="66" Height="66" HorizontalAlignment="Left">
+                <Image Source="/images/MenuAdmin.png"/>
             </Button>
-            <Button Name="History" ToolTip="Пользователи" Margin="5,2,5,2" Height="50" Width="50" Click="History_Click">
-                <Image Source="images/History.png" Height="40" Width="40"></Image>
-            </Button>
-            <StackPanel Grid.Column="1" Width="182" Height="69" Margin="220,0,0,0">
-                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="Название" Width="180" Height="19" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox2" TextWrapping="Wrap" Text="Фирма" Width="180" Height="19" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox3" TextWrapping="Wrap" Text="Код товара" Width="180" Height="19" HorizontalAlignment="Right"/>
-            </StackPanel>
+
         </ToolBar>
-        <DataGrid
+        <Grid>
+            <DataGrid
         Name="DataGridProd"
         ItemsSource="{Binding}"
         AutoGenerateColumns="False"
         HorizontalAlignment="Left"
-        MaxWidth="1000" MaxHeight="295"
+        MaxHeight="295"
 RowBackground="White"
 AlternatingRowBackground="Gray"
-        BorderBrush="Blue"
+        BorderBrush="#2196f3"
 BorderThickness="3"
-        RowHeight="25"
+        Cursor="Hand" Width="auto" Margin="0,0,0,0">
 
-        Cursor="Hand">
-
-            <DataGrid.RowValidationErrorTemplate>
-                <ControlTemplate>
-                    <Grid Margin="0,-2,0,-2"
+                <DataGrid.RowValidationErrorTemplate>
+                    <ControlTemplate>
+                        <Grid Margin="0,-2,0,-2"
 ToolTip="{Binding RelativeSource={RelativeSource
 FindAncestor, AncestorType={x:Type DataGridRow}},
 Path=(Validation.Errors)[0].ErrorContent}">
-                        <Ellipse StrokeThickness="0" Fill="Red" 
+                            <Ellipse StrokeThickness="0" Fill="Red" 
   Width="{TemplateBinding FontSize}" 
   Height="{TemplateBinding FontSize}" />
-                        <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
+                            <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
   FontWeight="Bold" Foreground="White" 
   HorizontalAlignment="Center"  />
-                    </Grid>
-                </ControlTemplate>
-            </DataGrid.RowValidationErrorTemplate>
+                        </Grid>
+                    </ControlTemplate>
+                </DataGrid.RowValidationErrorTemplate>
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Название"
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название"
 Binding="{Binding Name, Mode=TwoWay,
 UpdateSourceTrigger=PropertyChanged}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Цена"
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена"
 Binding="{Binding Price, Mode=TwoWay,
 UpdateSourceTrigger=PropertyChanged}">
-                </DataGridTextColumn>
+                    </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Фирма"
+                    <DataGridTextColumn Header="Фирма"
 Binding="{Binding Brand, Mode=TwoWay,
 UpdateSourceTrigger=PropertyChanged}">
-                </DataGridTextColumn>
+                    </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Протокол Соединения"
+                    <DataGridTextColumn Header="Протокол Соединения"
 Binding="{Binding ComProtocol, Mode=TwoWay,
 UpdateSourceTrigger=PropertyChanged}">
-                </DataGridTextColumn>
+                    </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Код товара" EditingElementStyle="{StaticResource errorStyle}">
-                    <DataGridTextColumn.Binding >
-                        <Binding Path="code" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions ="True" >
-                            <Binding.ValidationRules>
-                                <rule:CodeRule />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
+                    <DataGridTextColumn Header="Код товара" EditingElementStyle="{StaticResource errorStyle}">
+                        <DataGridTextColumn.Binding >
+                            <Binding Path="code" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions ="True" >
+                                <Binding.ValidationRules>
+                                    <rule:CodeRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Width="182" HorizontalAlignment="Right">
+                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="Название" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                <TextBox x:Name="TextBox2" TextWrapping="Wrap" Text="Фирма" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                <TextBox x:Name="TextBox3" TextWrapping="Wrap" Text="Код товара" Width="180" Height="auto" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Grid>
 
     </StackPanel>
 

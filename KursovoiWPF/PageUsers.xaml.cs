@@ -23,14 +23,16 @@ namespace KursovoiWPF
     {
         public static SmartStoreEntities1 DataEntities { get; set; } = new SmartStoreEntities1();
         public ObservableCollection<Profiles> ListProfiles { get; set; }
-        public PageUsers()
+        public PageUsers(MainWindow mainWindow)
         {
             InitializeComponent();
             DataEntities = new SmartStoreEntities1();
             ListProfiles = new ObservableCollection<Profiles>();
+            mw = mainWindow;
         }
         public bool isDirty = true;
         public static bool canSave = true;
+        public MainWindow mw;
         public void GetProduct()
         {
             ListProfiles.Clear();
@@ -58,39 +60,7 @@ namespace KursovoiWPF
             e.CanExecute = isDirty;
 
         }
-        private void SaveCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            MessageBox.Show("Сохранено");
-            DataEntities.SaveChanges();
-
-            canSave = true;
-            DataGridUsers.IsReadOnly = true;
-        }
-        private void SaveCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = canSave;
-
-        }
-        private void DeleteCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            Profiles profiles = DataGridUsers.SelectedItem as Profiles;
-            MessageBoxResult result = MessageBox.Show("Удалить данные", "Предупреждение", MessageBoxButton.OKCancel);
-            if (result == MessageBoxResult.OK)
-            {
-
-                DataEntities.Profiles.Remove(profiles);
-                DataGridUsers.SelectedIndex = DataGridUsers.SelectedIndex == 0 ? 1 : DataGridUsers.SelectedIndex - 1;
-                ListProfiles.Remove(profiles);
-            }
-            else
-            {
-                MessageBox.Show("Выберете строку для удаления");
-            }
-        }
-        private void DeleteCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = isDirty;
-        }
+        
         private void FindCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             MessageBox.Show("Поиск по фильтру(ам)");
@@ -129,6 +99,12 @@ namespace KursovoiWPF
         {
             GetProduct();
             DataGridUsers.SelectedIndex = 0;
+        }
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Page Menu = new PageMenuAdmin(mw);
+            mw.Content = Menu;
         }
     }
 }

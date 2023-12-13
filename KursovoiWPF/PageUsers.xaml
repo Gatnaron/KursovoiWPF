@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:KursovoiWPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="PageMain"
       Loaded="Page_Loaded">
     <Page.Resources>
@@ -36,45 +36,31 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             </MenuItem>
             <MenuItem Header="Отчёт"/>
         </Menu>
-        <ToolBar Name="ToolBar1" Margin="3" Height="81">
+        <ToolBar Name="ToolBar1" Margin="3" Height="99">
             <Button Name="Undo" Command="Undo" ToolTip="Отменить редактирование/создание"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Undo.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2" Width="66" Height="66">
+                <Image Source="images/Undo.png"/>
             </Button>
             <Button Name="Find" ToolTip="Найти" Command="Find"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Find.png" Height="40" Width="40"></Image>
+                    Margin="5,2,5,2" Width="66" Height="66">
+                <Image Source="images/Find.png"/>
             </Button>
-            <Button Name="Save" ToolTip="Сохранить" Command="Save"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Save.png" Height="40" Width="40"></Image>
+            <Button x:Name="Menu" ToolTip="Меню" Click="Menu_Click" Width="66" Height="66">
+                <Image Source="/images/MenuAdmin.png"/>
             </Button>
-            <Button Name="Delete" ToolTip="Удалить" Command="Delete"
-                    Margin="5,2,5,2" Height="50" Width="50">
-                <Image Source="images/Delete.png" Height="40" Width="40"></Image>
-                <Button.CommandBindings>
-                    <CommandBinding Command="Delete"
-                        Executed="DeleteCommandBinding_Executed"
-                        CanExecute="DeleteCommandBinding_CanExecute" />
-                </Button.CommandBindings>
-            </Button>
-            <StackPanel Grid.Column="1" Width="182" Height="69" Margin="220,0,0,0">
-                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="ID" Width="180" Height="19" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox2" TextWrapping="Wrap" Text="Логин" Width="180" Height="19" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox3" TextWrapping="Wrap" Text="Email" Width="180" Height="19" HorizontalAlignment="Right"/>
-            </StackPanel>
+
         </ToolBar>
+        <Grid>
         <DataGrid
         Name="DataGridUsers"
         ItemsSource="{Binding}"
         AutoGenerateColumns="False"
         HorizontalAlignment="Left"
-        MaxWidth="1000" MaxHeight="295"
+        IsReadOnly="True"
 RowBackground="White"
 AlternatingRowBackground="Gray"
-        BorderBrush="Blue"
+        BorderBrush="#2196f3"
 BorderThickness="3"
-        RowHeight="25"
 
         Cursor="Hand">
 
@@ -112,22 +98,20 @@ UpdateSourceTrigger=PropertyChanged}">
                 
             </DataGrid.Columns>
         </DataGrid>
-
-
+            <StackPanel Grid.Column="1" Width="182" Margin="220,0,0,0" HorizontalAlignment="Right">
+                <TextBox x:Name="TextBox2" TextWrapping="Wrap" Text="Логин" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                <TextBox x:Name="TextBox3" TextWrapping="Wrap" Text="Email" Width="180" Height="auto" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Grid>
+    
     </StackPanel>
 
     <Page.CommandBindings>
         <CommandBinding Command="Undo"
                         Executed="UndoCommandBinding_Executed"
                         CanExecute="UndoCommandBinding_CanExecute" />
-        <CommandBinding Command="Save"
-                        Executed="SaveCommandBinding_Executed"
-                        CanExecute="SaveCommandBinding_CanExecute" />
         <CommandBinding Command="Find"
                         Executed="FindCommandBinding_Executed"
                         CanExecute="FindCommandBinding_CanExecute" />
-        <CommandBinding Command="Delete"
-                        Executed="DeleteCommandBinding_Executed"
-                        CanExecute="DeleteCommandBinding_CanExecute" />
     </Page.CommandBindings>
 </Page>
