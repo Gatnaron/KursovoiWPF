@@ -37,7 +37,7 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             </MenuItem>
             <MenuItem Header="Отчёт"/>
         </Menu>
-        <ToolBar Name="ToolBar1" Margin="3" Height="81">
+        <ToolBar Name="ToolBar1" Margin="3" Height="80">
             <Button Name="Undo" ToolTip="Вернуться в магазин"
                     Margin="5,2,5,2" Click="Undo_Click">
                 <Image Source="images/Undo.png"/>
@@ -65,9 +65,11 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             <Button Name="History" ToolTip="История покупок" Margin="5,2,5,2" Click="History_Click">
                 <Image Source="images/History.png"/>
             </Button>
-            <StackPanel Grid.Column="1" Height="68" Width="188">
+            <StackPanel Grid.Column="1" Height="78" Width="188">
                 <TextBlock x:Name="AllPrice" Margin="5" FontSize="13" FontWeight="Bold" Foreground="#2196f3" Text="{Binding GetSum, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="138"/>
-                <TextBox x:Name="TextBoxAdress" TextWrapping="Wrap" Text="Адрес доставки" Width="180" Height="auto"/>
+                <TextBox x:Name="TextBoxAdress" TextWrapping="Wrap" TextChanged="TextBoxAdress_TextChanged" Width="180" Height="auto"/>
+                <Label x:Name="TextBoxAdressPlaceholder" Content="Адрес доставки" Background="Transparent" Opacity="0.5" IsHitTestVisible="False"/>
+
             </StackPanel>
 
         </ToolBar>
@@ -138,9 +140,14 @@ SelectedValuePath="ID_P"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Width="182"  Margin="618,0,0,0" HorizontalAlignment="Right">
-                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="Название" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox2" TextWrapping="Wrap" Text="Фирма" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox3" TextWrapping="Wrap" Text="Код товара" Width="180" Height="auto" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox1" TextWrapping="Wrap" TextChanged="TextBox1_TextChanged" Width="180" HorizontalAlignment="Right" />
+                <Label x:Name="TextBox1Placeholder" Content="Название" Background="Transparent" Opacity="0.5" IsHitTestVisible="False" Margin="0,0,0,5"/>
+
+                <TextBox x:Name="TextBox2" TextWrapping="Wrap" TextChanged="TextBox2_TextChanged" Width="180" HorizontalAlignment="Right"/>
+                <Label x:Name="TextBox2Placeholder" Content="Фирма" Background="Transparent" Opacity="0.5" IsHitTestVisible="False" Margin="0,0,0,5"/>
+
+                <TextBox x:Name="TextBox3" TextWrapping="Wrap" TextChanged="TextBox3_TextChanged" Width="180" HorizontalAlignment="Right"/>
+                <Label x:Name="TextBox3Placeholder" Content="Код товара" Background="Transparent" Opacity="0.5" IsHitTestVisible="False"/>
             </StackPanel>
         </Grid>
 

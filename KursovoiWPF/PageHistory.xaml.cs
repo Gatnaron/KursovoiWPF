@@ -136,7 +136,14 @@ namespace KursovoiWPF
 
         private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (TextBox1.Text != "")
+            {
+                TextBox1Placeholder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBox1Placeholder.Visibility = Visibility.Visible;
+            }
         }
     }
 }

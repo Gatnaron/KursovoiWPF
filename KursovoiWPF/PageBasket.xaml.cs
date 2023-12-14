@@ -170,5 +170,52 @@ namespace KursovoiWPF
             var pb = new PageHistoryUser(this);
             mw.Content = pb;
         }
+
+        private void TextBoxAdress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextBoxAdress.Text != "")
+            {
+                TextBoxAdressPlaceholder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBoxAdressPlaceholder.Visibility = Visibility.Visible;
+            }
+        }
+        private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextBox1.Text != "")
+            {
+                TextBox1Placeholder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBox1Placeholder.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBox2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextBox2.Text != "")
+            {
+                TextBox2Placeholder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBox2Placeholder.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBox3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextBox3.Text != "")
+            {
+                TextBox3Placeholder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBox3Placeholder.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

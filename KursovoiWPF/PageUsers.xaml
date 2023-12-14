@@ -99,8 +99,11 @@ UpdateSourceTrigger=PropertyChanged}">
             </DataGrid.Columns>
         </DataGrid>
             <StackPanel Grid.Column="1" Width="182" Margin="220,0,0,0" HorizontalAlignment="Right">
-                <TextBox x:Name="TextBox2" TextWrapping="Wrap" Text="Логин" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox3" TextWrapping="Wrap" Text="Email" Width="180" Height="auto" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox2" TextWrapping="Wrap" TextChanged="TextBox2_TextChanged" Width="180" HorizontalAlignment="Right"/>
+                <Label x:Name="TextBox2Placeholder" Content="Логин" Background="Transparent" Opacity="0.5" IsHitTestVisible="False" Margin="0,0,0,5"/>
+
+                <TextBox x:Name="TextBox3" TextWrapping="Wrap" TextChanged="TextBox3_TextChanged" Width="180" HorizontalAlignment="Right"/>
+                <Label x:Name="TextBox3Placeholder" Content="Email" Background="Transparent" Opacity="0.5" IsHitTestVisible="False"/>
             </StackPanel>
         </Grid>
     

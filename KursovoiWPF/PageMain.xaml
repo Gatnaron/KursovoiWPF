@@ -135,9 +135,14 @@ UpdateSourceTrigger=PropertyChanged}">
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Width="182" HorizontalAlignment="Right">
-                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Text="Название" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox2" TextWrapping="Wrap" Text="Фирма" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5"/>
-                <TextBox x:Name="TextBox3" TextWrapping="Wrap" Text="Код товара" Width="180" Height="auto" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox1" TextWrapping="Wrap" TextChanged="TextBox1_TextChanged" Width="180" HorizontalAlignment="Right" />
+                <Label x:Name="TextBox1Placeholder" Content="Название" Background="Transparent" Opacity="0.5" IsHitTestVisible="False" Margin="0,0,0,5"/>
+
+                <TextBox x:Name="TextBox2" TextWrapping="Wrap" TextChanged="TextBox2_TextChanged" Width="180" HorizontalAlignment="Right"/>
+                <Label x:Name="TextBox2Placeholder" Content="Фирма" Background="Transparent" Opacity="0.5" IsHitTestVisible="False" Margin="0,0,0,5"/>
+
+                <TextBox x:Name="TextBox3" TextWrapping="Wrap" TextChanged="TextBox3_TextChanged" Width="180" HorizontalAlignment="Right"/>
+                <Label x:Name="TextBox3Placeholder" Content="Код товара" Background="Transparent" Opacity="0.5" IsHitTestVisible="False"/>
             </StackPanel>
         </Grid>
 

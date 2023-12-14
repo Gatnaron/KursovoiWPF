@@ -48,9 +48,11 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
                 <Image Source="/images/MenuAdmin.png"/>
             </Button>
 
-            <StackPanel Grid.Column="1" Width="182" Height="69" Margin="220,0,0,0">
+            <StackPanel Grid.Column="1" Width="182" Height="79" Margin="220,0,0,0">
                 <DatePicker x:Name="DatePicker1" Text="Дата заказа" Width="180" Height="auto" HorizontalAlignment="Right" Margin="0,0,0,5" DisplayDate="2023-05-12"/>
-                <TextBox x:Name="TextBox1" TextWrapping="Wrap" Width="180" Height="auto" HorizontalAlignment="Right" Text="Адрес"/>
+                <TextBox x:Name="TextBox1" TextWrapping="Wrap" TextChanged="TextBox1_TextChanged" Width="180" HorizontalAlignment="Right" />
+                <Label x:Name="TextBox1Placeholder" Content="Адрес" Background="Transparent" Opacity="0.5" IsHitTestVisible="False" Margin="0,0,0,5"/>
+
             </StackPanel>
             
         </ToolBar>

@@ -106,5 +106,28 @@ namespace KursovoiWPF
             Page Menu = new PageMenuAdmin(mw);
             mw.Content = Menu;
         }
+        private void TextBox2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextBox2.Text != "")
+            {
+                TextBox2Placeholder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBox2Placeholder.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBox3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextBox3.Text != "")
+            {
+                TextBox3Placeholder.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBox3Placeholder.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
